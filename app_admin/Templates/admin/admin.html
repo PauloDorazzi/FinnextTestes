@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Compras - FMRP-USP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="static/css/admin/interface.css">
+<script src="static/js/admin/interface.js" defer></script>
+<link rel="icon" href="static/img/pngwing.com.png" type="image/x-icon">
+</head>
+<body>
+<div class="admin-container">
+    <!-- Cabeçalho -->
+    <header class="admin-header">
+        <div class="header-left">
+            <img src="static/images/admin/Logo.png" alt="FMRP-USP Logo" class="logo">
+            <h1>Controle de Compras - FMRP</h1>
+        </div>
+            <div class="header-right">
+                <div class="user-profile">
+                    <span class="username">Admin Compras</span>
+                    <div class="avatar">A</div>
+                    <div class="dropdown-menu">
+                        <a href="#"><i class="fas fa-user-cog"></i> Perfil</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <div class="admin-main">
+            <!-- Menu Lateral -->
+            <aside class="admin-sidebar">
+                <nav>
+                    <ul class="sidebar-menu">
+                        <li class="menu-title">Navegação Principal</li>
+                        <li class="active">
+                            <a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        </li>
+                        
+                        <li class="menu-title">Gestão de Compras</li>
+                       
+                        <li class="has-submenu">
+                            <a href="#produtos"><i class="fas fa-laptop"></i> Produtos <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="#produtos-listar">Listar Produtos</a></li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li class="menu-title">Relatórios</li>
+                        <li>
+                            <a href="#relatorios-compras"><i class="fas fa-file-invoice-dollar"></i> Compras</a>
+                        </li>
+                        
+                        <li class="menu-title">Administração</li>
+                        <li>
+                            <a href="#configuracoes"><i class="fas fa-cog"></i> Configurações</a>
+                        </li>
+                        <li>
+                            <a href="#usuarios"><i class="fas fa-users-cog"></i> Usuários</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Área de Conteúdo -->
+            <main class="admin-content">
+                <div class="content-header">
+                    <h2 id="page-title">Dashboard de Compras</h2>
+                    <div class="breadcrumb">
+                        <a href="#dashboard"><i class="fas fa-home"></i> Home</a> / <span id="breadcrumb-current">Dashboard</span>
+                    </div>
+                </div>
+
+                <div class="content-body" id="content-body">
+                    <!-- Conteúdo do Dashboard (padrão) -->
+                    <div class="stats-grid">
+                        <div class="stat-card stat-card-requests">
+                            <div class="stat-icon bg-blue">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="pending-requests">24</h3>
+                                <p>Solicitações Pendentes</p>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-equipment">
+                            <div class="stat-icon bg-green">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="total-equipment">156</h3>
+                                <p>Equipamentos Cadastrados</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-orange">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="approved-requests">78</h3>
+                                <p>Solicitações Aprovadas</p>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-budget">
+                            <div class="stat-icon bg-purple">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="monthly-budget">R$ 125.430</h3>
+                                <p>Orçamento Mensal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solicitações Recentes -->
+                    <div class="recent-activities">
+                        <div class="section-header">
+                            <h3>Solicitações Recentes</h3>
+                            <a href="#solicitacoes" class="view-all">Ver Todas</a>
+                        </div>
+                        <div class="filters-container">
+                            <div class="filters-row">
+                                <div class="input-group">
+                                    <label for="filter-department">Departamento</label>
+                                    <select id="filter-department">
+                                        <option value="">Todos</option>
+                                        <option value="informatica">Informática</option>
+                                        <option value="matematica">Matemática</option>
+                                        <option value="medicina">Medicina</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="filter-status">Status</label>
+                                    <select id="filter-status">
+                                        <option value="">Todos</option>
+                                        <option value="pending">Pendentes</option>
+                                        <option value="approved">Aprovadas</option>
+                                        <option value="denied">Negadas</option>
+                                    </select>
+                                </div>
+                                <button class="btn-primary">
+                                    <i class="fas fa-filter"></i> Filtrar
+                                </button>
+                            </div>
+                        </div>
+                        <table class="products-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Solicitante</th>
+                                    <th>Produto</th>
+                                    <th>Departamento</th>
+                                    <th>Data</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1254</td>
+                                    <td>Prof. Carlos Silva</td>
+                                    <td>Notebook Dell XPS 15</td>
+                                    <td>Informática</td>
+                                    <td>15/05/2023</td>
+                                    <td><span class="status-badge status-pending">Pendente</span></td>
+                                    <td>
+                                        <button class="btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-accent btn-sm"><i class="fas fa-check"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1253</td>
+                                    <td>Dra. Ana Oliveira</td>
+                                    <td>Tablet Samsung S7</td>
+                                    <td>Medicina</td>
+                                    <td>14/05/2023</td>
+                                    <td><span class="status-badge status-approved">Aprovado</span></td>
+                                    <td>
+                                        <button class="btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1252</td>
+                                    <td>Prof. Marcos Souza</td>
+                                    <td>Monitor LG 27"</td>
+                                    <td>Matemática</td>
+                                    <td>13/05/2023</td>
+                                    <td><span class="status-badge status-purchased">Comprado</span></td>
+                                    <td>
+                                        <button class="btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1251</td>
+                                    <td>Dr. João Pereira</td>
+                                    <td>Notebook MacBook Pro</td>
+                                    <td>Informática</td>
+                                    <td>12/05/2023</td>
+                                    <td><span class="status-badge status-denied">Negado</span></td>
+                                    <td>
+                                        <button class="btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#1250</td>
+                                    <td>Dra. Maria Santos</td>
+                                    <td>Tablet Apple iPad Pro</td>
+                                    <td>Medicina</td>
+                                    <td>10/05/2023</td>
+                                    <td><span class="status-badge status-delivered">Entregue</span></td>
+                                    <td>
+                                        <button class="btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="admin-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="Logo.png" alt="FMRP-USP Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-info">
+                    <p>Faculdade de Medicina de Ribeirão Preto - Universidade de São Paulo</p>
+                    <p>Sistema de Controle de Compras &copy; <span id="current-year"></span></p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.fmrp.usp.br/" target="_blank">Site Oficial</a>
+                    <a href="https://sti.fmrp.usp.br/" target="_blank">STI FMRP</a>
+                    <a href="#suporte">Suporte Técnico</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal de Detalhes da Solicitação -->
+    <div class="modal-overlay" id="request-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detalhes da Solicitação #1254</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Solicitante</label>
+                        <input type="text" value="Prof. Carlos Silva" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Departamento</label>
+                        <input type="text" value="Informática" readonly>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Produto Solicitado</label>
+                        <input type="text" value="Notebook Dell XPS 15" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Quantidade</label>
+                        <input type="text" value="1" readonly>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Justificativa</label>
+                    <textarea rows="4" readonly>Necessário para substituição de equipamento antigo que não atende mais às demandas de processamento para as aulas de programação avançada.</textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Data da Solicitação</label>
+                        <input type="text" value="15/05/2023 14:32" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label>Status</label>
+                        <select>
+                            <option value="pending" selected>Pendente</option>
+                            <option value="approved">Aprovado</option>
+                            <option value="denied">Negado</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Observações do Administrador</label>
+                    <textarea rows="3" placeholder="Adicione observações sobre esta solicitação..."></textarea>
+                </div>
+                
+                <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                    <button class="btn-accent">Salvar Alterações</button>
+                    <button class="btn-primary close-modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates para outras páginas -->
+    <template id="solicitacoes-template">
+        <div class="section-header">
+            <h3>Todas as Solicitações</h3>
+        </div>
+        <div class="filters-container">
+            <div class="filters-row">
+                <div class="input-group">
+                    <label for="filter-department">Departamento</label>
+                    <select id="filter-department">
+                        <option value="">Todos</option>
+                        <option value="informatica">Informática</option>
+                        <option value="matematica">Matemática</option>
+                        <option value="medicina">Medicina</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="filter-status">Status</label>
+                    <select id="filter-status">
+                        <option value="">Todos</option>
+                        <option value="pending">Pendentes</option>
+                        <option value="approved">Aprovadas</option>
+                        <option value="denied">Negadas</option>
+                    </select>
+                </div>
+                <button class="btn-primary">
+                    <i class="fas fa-filter"></i> Filtrar
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Solicitante</th>
+                        <th>Produto</th>
+                        <th>Departamento</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1254</td>
+                        <td>Prof. Carlos Silva</td>
+                        <td>Notebook Dell XPS 15</td>
+                        <td>Informática</td>
+                        <td>15/05/2023</td>
+                        <td><span class="status-badge status-pending">Pendente</span></td>
+                        <td>
+                            <button class="btn-primary btn-sm"><i class="fas fa-eye"></i></button>
+                            <button class="btn-accent btn-sm"><i class="fas fa-check"></i></button>
+                        </td>
+                    </tr>
+                    <!-- Mais linhas podem ser adicionadas aqui -->
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="produtos-listar-template">
+        <div class="section-header" >
+            <h3>Lista de Produtos</h3>
+            <button onclick="window.location.href='cadastro_produto.html'" class="btn-primary">Adicionar Produto</button>
+                <button class="btn-primary">Exportar Excel</button>
+        </div>
+        <div class="table-responsive">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Estoque</th>
+                        <th>Preço Unitário</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PROD001</td>
+                        <td>Notebook Dell XPS 15</td>
+                        <td>Informática</td>
+                        <td>5</td>
+                        <td>R$ 8.999,00</td>
+                        <td>
+                            <button class="btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                            <button class="btn-accent btn-sm"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <!-- Mais linhas podem ser adicionadas aqui -->
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+   
+    <template id="produtos-categorias-template">
+        <div class="section-header">
+            <h3>Categorias de Produtos</h3>
+            <button class="btn-primary">Nova Categoria</button>
+        </div>
+        <div class="table-responsive">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Quantidade de Produtos</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CAT001</td>
+                        <td>Informática</td>
+                        <td>24</td>
+                        <td>
+                            <button class="btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                            <button class="btn-accent btn-sm"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <!-- Mais linhas podem ser adicionadas aqui -->
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="relatorios-compras-template">
+        <div class="section-header">
+            <h3>Relatórios de Compras</h3>
+            <button class="btn-primary">Gerar Relatório</button>
+        </div>
+        <div class="reports-container">
+            <div class="filters-row">
+                <div class="input-group">
+                    <label for="report-period">Período</label>
+                    <select id="report-period">
+                        <option value="last-week">Última Semana</option>
+                        <option value="last-month">Último Mês</option>
+                        <option value="last-quarter">Último Trimestre</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="report-type">Tipo de Relatório</label>
+                    <select id="report-type">
+                        <option value="purchases">Compras</option>
+                        <option value="budget">Orçamento</option>
+                        <option value="suppliers">Fornecedores</option>
+                    </select>
+                </div>
+                <button class="btn-primary">
+                    <i class="fas fa-chart-bar"></i> Gerar
+                </button>
+            </div>
+            <div class="chart-container" style="margin-top: 20px;">
+                <p>Gere um relatório para visualizar os gráficos e dados aqui.</p>
+            </div>
+        </div>
+    </template>
+
+    <template id="configuracoes-template">
+        <div class="section-header">
+            <h3>Configurações do Sistema</h3>
+        </div>
+        <div class="settings-form">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="setting-email">E-mail de Notificação</label>
+                    <input type="email" id="setting-email" value="compras@fmrp.usp.br">
+                </div>
+                <div class="input-group">
+                    <label for="setting-budget">Orçamento Mensal Padrão</label>
+                    <input type="text" id="setting-budget" value="R$ 125.430,00">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="setting-notifications">Notificações</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" checked> Solicitações Pendentes
+                    </label>
+                    <label>
+                        <input type="checkbox" checked> Compras Aprovadas
+                    </label>
+                    <label>
+                        <input type="checkbox"> Entregas Realizadas
+                    </label>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn-accent">Salvar Configurações</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="usuarios-template">
+        <div class="section-header">
+            <h3>Gestão de Usuários</h3>
+            <button class="btn-primary">Adicionar Usuário</button>
+        </div>
+        <div class="table-responsive">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Departamento</th>
+                        <th>Perfil</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Admin Compras</td>
+                        <td>admin@fmrp.usp.br</td>
+                        <td>Administrativo</td>
+                        <td>Administrador</td>
+                        <td><span class="status-badge status-approved">Ativo</span></td>
+                        <td>
+                            <button class="btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                            <button class="btn-accent btn-sm"><i class="fas fa-key"></i></button>
+                        </td>
+                    </tr>
+                    <!-- Mais linhas podem ser adicionadas aqui -->
+                </tbody>
+            </table>
+        </div>
+    </template>
+</body>
+</html>

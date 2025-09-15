@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMRP - Sistema de Solicitações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="usuario.css"> 
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-university"></i>
+            </div>
+            <h2>FMRP Solicitações</h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item active" data-tab="new-request">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Nova Solicitação</span>
+                </li>
+                <li class="nav-item" data-tab="my-requests">
+                    <i class="fas fa-history"></i>
+                    <span>Minhas Solicitações</span>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="user-profile" id="userProfile">
+            <div class="user-avatar">JS</div>
+            <div class="user-info">
+                <div class="user-name">Joana Silva</div>
+                <div class="user-department">Departamento de TI</div>
+            </div>
+            <i class="fas fa-chevron-down"></i>
+            
+            <div class="profile-dropdown" id="profileDropdown">
+                <ul>
+                    <li><i class="fas fa-user"></i> Meu Perfil</li>
+                    <li><i class="fas fa-cog"></i> Configurações</li>
+                    <li><i class="fas fa-sign-out-alt"></i> Sair</li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-container">
+        <main class="main-content">
+            <header class="main-header">
+                <div class="page-title">
+                    <h1>Sistema de Solicitações</h1>
+                </div>
+            </header>
+            
+            <div class="tab-content active" id="new-request">
+                <section class="content-section">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="productSearch" placeholder="Pesquisar equipamentos...">
+                        <div class="catalog-options">
+                            <button class="catalog-btn active" data-filter="all">Ver tudo</button>
+                            <button class="catalog-btn" data-filter="notebook">Notebooks</button>
+                            <button class="catalog-btn" data-filter="tablet">Tablets</button>
+                            <button class="catalog-btn" data-filter="acessorio">Acessórios</button>
+                        </div>
+                        <div class="catalog-grid" id="catalogResults"></div>
+                    </div>
+
+                    <div class="cart">
+                        <h3>Carrinho de Solicitação</h3>
+                        <div id="cartItems"></div>
+                        <button class="btn btn-primary" id="submitRequest" style="margin-top: 20px;">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <div class="tab-content" id="my-requests">
+                <section class="content-section">
+                    <h2>Minhas Solicitações</h2>
+                    <div class="requests-list" id="requestsList"></div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="Logo.png" alt="FMRP-USP Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-info">
+                    <p>Faculdade de Medicina de Ribeirão Preto - Universidade de São Paulo</p>
+                    <p>Sistema de Solicitações &copy; <span id="current-year"></span></p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.fmrp.usp.br/" target="_blank">Site Oficial</a>
+                    <a href="https://sti.fmrp.usp.br/" target="_blank">STI FMRP</a>
+                    <a href="#suporte">Suporte Técnico</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="usuario.js" defer></script> 
+</body>
+</html>

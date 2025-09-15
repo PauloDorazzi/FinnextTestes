@@ -1,0 +1,51 @@
+<!-- Altere forms para usar URLs Django -->
+<form id="loginForm" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+
+<script>
+// JavaScript modificado para trabalhar com Django
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+    };
+    
+    try {
+        const response = await fetch('/api/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Redirecionar baseado no tipo de usuário
+            if (formData.username === 'admin') {
+                window.location.href = '{% url "dashboard_admin" %}';
+            } else {
+                window.location.href = '{% url "dashboard_usuario" %}';
+            }
+        } else {
+            alert('Erro: ' + data.message);
+        }
+    } catch (error) {
+        alert('Erro de conexão');
+    }
+});
+</script>
