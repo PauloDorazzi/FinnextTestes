@@ -4,18 +4,18 @@
    <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Controle de Compras - FMRP-USP</title>
+{% load static %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="static/css/admin/interface.css">
-<script src="static/js/admin/interface.js" defer></script>
-<link rel="icon" href="static/img/pngwing.com.png" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'css/admin/interface.css' %}">
+<link rel="icon" href="{% static 'images/admin/pngwing.com.png' %}" type="image/x-icon">
 </head>
 <body>
 <div class="admin-container">
     <!-- Cabeçalho -->
     <header class="admin-header">
         <div class="header-left">
-            <img src="static/images/admin/Logo.png" alt="FMRP-USP Logo" class="logo">
+            <img src="{% static 'images/Logo.png' %}" alt="FMRP-USP Logo" class="logo">
             <h1>Controle de Compras - FMRP</h1>
         </div>
             <div class="header-right">
@@ -538,5 +538,6 @@
             </table>
         </div>
     </template>
+    <script src="{% static 'js/admin/interface' %}" defer></script>
 </body>
 </html>

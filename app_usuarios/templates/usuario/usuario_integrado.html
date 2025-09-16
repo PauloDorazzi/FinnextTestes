@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FMRP - Sistema de Solicitações</title>
+    {% load static %}
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="usuario.css"> 
+    <link rel="stylesheet" href="{% static 'css/usuario/usuario.css' %}"> 
 </head>
 <body>
     <aside class="sidebar">
@@ -97,7 +98,7 @@
         <footer class="main-footer">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="FMRP-USP Logo" class="footer-logo-img">
+                    <img src="{% static 'images/usuario/logo.png' %}" alt="FMRP-USP Logo" class="footer-logo-img">
                 </div>
                 <div class="footer-info">
                     <p>Faculdade de Medicina de Ribeirão Preto - Universidade de São Paulo</p>
@@ -113,7 +114,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="usuario_api.js"></script>
+    <script src="{% static 'js/usuario/usuario_api.js' %}"></script>
     <script>
         // Carrinho global
         window.carrinho = [];

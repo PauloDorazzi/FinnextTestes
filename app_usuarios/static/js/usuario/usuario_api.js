@@ -1,7 +1,7 @@
 // API Client para o sistema de usuário
 class UsuarioAPI {
     constructor() {
-        this.baseURL = '/api/usuario';
+        this.baseURL = '/usuario';
     }
 
     async getCSRFToken() {

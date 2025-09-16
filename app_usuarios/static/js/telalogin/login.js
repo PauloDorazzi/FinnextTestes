@@ -15,24 +15,26 @@ typeButtons.forEach(button => {
 // Redirecionamento quando o formulário for submetido
 loginForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     // Verifica qual botão está ativo (usuário ou admin)
     const isUserActive = btnUsuario.classList.contains('active');
-    
-    // Simples validação (em uma aplicação real, você validaria no servidor)
+
+    // Pega os campos
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    
+
     if (!username || !password) {
         alert('Por favor, preencha todos os campos');
         return;
     }
-    
-    // Redireciona para a tela correta usando caminhos relativos para o servidor HTTP simples
-    // Assumindo que telalogin.html, usuario.html e admin.html estão na mesma pasta 'templates/'
-    if (isUserActive) {
-        window.location.href = '../usuario/usuario.html'; 
-    } else {
-        window.location.href = '../admin/admin.html';   
-    }
+
+    // Cria um input oculto para enviar o tipo
+    const tipoInput = document.createElement("input");
+    tipoInput.type = "hidden";
+    tipoInput.name = "tipo";
+    tipoInput.value = isUserActive ? "usuario" : "admin";
+    loginForm.appendChild(tipoInput);
+
+    // Agora deixa o formulário ser enviado normalmente
+    loginForm.submit();
 });
