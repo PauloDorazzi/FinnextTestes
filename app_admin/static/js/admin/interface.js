@@ -58,28 +58,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const pendingRequests = document.getElementById('pending-requests');
         const totalEquipment = document.getElementById('total-equipment');
         const approvedRequests = document.getElementById('approved-requests');
-        const monthlyBudget = document.getElementById('monthly-budget');
+
         
         // Simular variação nos números
         const currentPending = parseInt(pendingRequests.textContent);
         const currentApproved = parseInt(approvedRequests.textContent);
         
-        // 20% de chance de adicionar uma nova solicitação pendente
-        if (Math.random() < 0.2) {
-            pendingRequests.textContent = currentPending + 1;
-        }
-        
-        // 10% de chance de aprovar uma solicitação pendente
-        if (Math.random() < 0.1 && currentPending > 0) {
-            pendingRequests.textContent = currentPending - 1;
-            approvedRequests.textContent = currentApproved + 1;
-        }
-        
-        // Atualizar orçamento (pequenas variações)
-        const currentBudget = parseInt(monthlyBudget.textContent.replace(/[^\d]/g, ''));
-        const budgetChange = Math.floor(Math.random() * 5000) - 2500; // Variação entre -2500 e +2500
-        monthlyBudget.textContent = `R$ ${(currentBudget + budgetChange).toLocaleString('pt-BR')}`;
-    }, 3000);
+    },); 
     
     // Atualizar o ano no footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -114,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Solicitações',
             breadcrumb: 'Solicitações'
         },
-        '#produtos-listar': {
+        '#produtos': {
             template: 'produtos-listar-template',
             title: 'Lista de Produtos',
             breadcrumb: 'Produtos / Listar'

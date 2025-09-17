@@ -10,10 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
-from dotenv import load_dotenv # type: ignore
-from pathlib import Path
+from pathlib import Path # type: ignore
 
-load_dotenv() # Carrega o arquivo .env
 
 SECRET_KEY = str(os.getenv('SECRET_KEY')) 
 # Passa a variável de ambiente SECRET_KEY como valor para a variável SECRET_KEY do settings.py, convertendo o valor para uma string.
@@ -27,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-=wowd7+kvkpvudiu(8exquccd@^h$c_lqc)03t^to&n#@lc%i="
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,6 +44,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "app_usuarios",
     "app_admin",
+    "app_catalogo",
+    "app_solicitacoes",
+    "app_perfil",
+    "app_relatorios",
 ]
 
 MIDDLEWARE = [

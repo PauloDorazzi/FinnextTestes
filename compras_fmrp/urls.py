@@ -1,9 +1,17 @@
-from django.urls import path # type: ignore
-from app_admin import views as admin_views
+from django.urls import path  # type: ignore
+from django.urls import include  # type: ignore
 from app_usuarios import views as usuario_views
+from django.contrib import admin  # type: ignore
 
 urlpatterns = [
+
     path('', usuario_views.login, name='login'),
-    path('admin/', admin_views.dashboard, name='dashboard_admin'),
-    path('usuario/', usuario_views.dashboard, name='dashboard_usuario'),
+    path('usuarios/', include('app_usuarios.urls')),
+    path('admin/', include('app_admin.urls')),
+    path("catalogo/", include("app_catalogo.urls")),
+    path("solicitacoes/", include("app_solicitacoes.urls")),
+    path("perfil/", include("app_perfil.urls")),
+]
+urlpatterns += [
+    path('django-admin/', admin.site.urls),
 ]

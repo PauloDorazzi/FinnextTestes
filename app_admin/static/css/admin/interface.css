@@ -211,37 +211,6 @@ body {
   font-weight: 600;
 }
 
-.has-submenu > a::after {
-  content: '\f078';
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-  margin-left: auto;
-  font-size: 0.8rem;
-  transition: transform 0.3s;
-}
-
-.has-submenu.active > a::after {
-  transform: rotate(180deg);
-}
-
-.submenu {
-  list-style: none;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  background-color: rgba(5, 94, 111, 0.05);
-}
-
-.has-submenu.active .submenu {
-  max-height: 500px;
-}
-
-.submenu li a {
-  padding-left: 55px;
-  font-size: 0.9rem;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
 
 /* Conteúdo Principal */
 .admin-content {
@@ -328,13 +297,6 @@ body {
 .bg-orange { background-color: var(--status-pending); }
 .bg-purple { background-color: var(--status-delivered); }
 
-.stat-info h3 {
-  font-size: 1.8rem;
-  margin-bottom: 5px;
-  color: var(--primary-color);
-  font-weight: 700;
-}
-
 .stat-info p {
   color: var(--dark-gray);
   font-size: 0.9rem;
@@ -376,18 +338,6 @@ body {
 .section-header h3 {
   color: var(--primary-color);
   font-size: 1.3rem;
-}
-
-.view-all {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.view-all:hover {
-  color: var(--secondary-color);
 }
 
 .filters-container {

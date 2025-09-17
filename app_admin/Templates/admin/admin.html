@@ -15,7 +15,7 @@
     <!-- Cabeçalho -->
     <header class="admin-header">
         <div class="header-left">
-            <img src="{% static 'images/Logo.png' %}" alt="FMRP-USP Logo" class="logo">
+            <img src="{% static 'images/admin/logo.png' %}" alt="FMRP-USP Logo" class="logo">
             <h1>Controle de Compras - FMRP</h1>
         </div>
             <div class="header-right">
@@ -43,12 +43,8 @@
                         
                         <li class="menu-title">Gestão de Compras</li>
                        
-                        <li class="has-submenu">
-                            <a href="#produtos"><i class="fas fa-laptop"></i> Produtos <i class="fas fa-chevron-down"></i></a>
-                            <ul class="submenu">
-                                <li><a href="#produtos-listar">Listar Produtos</a></li>
-                                
-                            </ul>
+                        <li class = "active" >
+                            <a href="#produtos"><i class="fas fa-laptop"></i> Produtos <i ></i></a>
                         </li>
                         
                         <li class="menu-title">Relatórios</li>
@@ -79,22 +75,22 @@
                 <div class="content-body" id="content-body">
                     <!-- Conteúdo do Dashboard (padrão) -->
                     <div class="stats-grid">
-                        <div class="stat-card stat-card-requests">
+                      <div class="stat-card stat-card-equipment">
+                            <div class="stat-icon bg-green">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="total-equipment">0</h3>
+                                <p>Equipamentos Cadastrados</p>
+                            </div>
+                        </div>
+                             <div class="stat-card stat-card-requests">
                             <div class="stat-icon bg-blue">
                                 <i class="fas fa-clipboard-list"></i>
                             </div>
                             <div class="stat-info">
                                 <h3 id="pending-requests">24</h3>
                                 <p>Solicitações Pendentes</p>
-                            </div>
-                        </div>
-                        <div class="stat-card stat-card-equipment">
-                            <div class="stat-icon bg-green">
-                                <i class="fas fa-laptop"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="total-equipment">156</h3>
-                                <p>Equipamentos Cadastrados</p>
                             </div>
                         </div>
                         <div class="stat-card">
@@ -106,31 +102,22 @@
                                 <p>Solicitações Aprovadas</p>
                             </div>
                         </div>
-                        <div class="stat-card stat-card-budget">
-                            <div class="stat-icon bg-purple">
-                                <i class="fas fa-money-bill-wave"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h3 id="monthly-budget">R$ 125.430</h3>
-                                <p>Orçamento Mensal</p>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Solicitações Recentes -->
                     <div class="recent-activities">
                         <div class="section-header">
-                            <h3>Solicitações Recentes</h3>
-                            <a href="#solicitacoes" class="view-all">Ver Todas</a>
+                            <h3>Solicitações</h3>
+                            
                         </div>
                         <div class="filters-container">
                             <div class="filters-row">
                                 <div class="input-group">
                                     <label for="filter-department">Departamento</label>
                                     <select id="filter-department">
+                                        
                                         <option value="">Todos</option>
                                         <option value="informatica">Informática</option>
-                                        <option value="matematica">Matemática</option>
                                         <option value="medicina">Medicina</option>
                                     </select>
                                 </div>
@@ -227,7 +214,7 @@
         <footer class="admin-footer">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="Logo.png" alt="FMRP-USP Logo" class="footer-logo-img">
+                    <img src="{% static 'images/admin/logo.png' %}" alt="FMRP-USP Logo" class="footer-logo-img">
                 </div>
                 <div class="footer-info">
                     <p>Faculdade de Medicina de Ribeirão Preto - Universidade de São Paulo</p>
@@ -367,7 +354,7 @@
         </div>
     </template>
 
-    <template id="produtos-listar-template">
+    <template id="produtos-listar">
         <div class="section-header" >
             <h3>Lista de Produtos</h3>
             <button onclick="window.location.href='cadastro_produto.html'" class="btn-primary">Adicionar Produto</button>
@@ -479,10 +466,7 @@
                     <label for="setting-email">E-mail de Notificação</label>
                     <input type="email" id="setting-email" value="compras@fmrp.usp.br">
                 </div>
-                <div class="input-group">
-                    <label for="setting-budget">Orçamento Mensal Padrão</label>
-                    <input type="text" id="setting-budget" value="R$ 125.430,00">
-                </div>
+             
             </div>
             <div class="input-group">
                 <label for="setting-notifications">Notificações</label>
@@ -538,6 +522,6 @@
             </table>
         </div>
     </template>
-    <script src="{% static 'js/admin/interface' %}" defer></script>
+    <script src="{% static 'js/admin/interface.js' %}" defer></script>
 </body>
 </html>
