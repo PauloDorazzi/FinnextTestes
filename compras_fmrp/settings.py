@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path # type: ignore
 
+LOGIN_REDIRECT_URL = "dashboard_usuario"
+LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "login"
 
 SECRET_KEY = str(os.getenv('SECRET_KEY')) 
 # Passa a variável de ambiente SECRET_KEY como valor para a variável SECRET_KEY do settings.py, convertendo o valor para uma string.

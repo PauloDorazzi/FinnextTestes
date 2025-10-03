@@ -1,70 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FMRP - Login</title>
-    {% load static %}  <!-- CARREGAR STATIC -->
-    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS COM TAG STATIC DO DJANGO -->
-   <link rel="stylesheet" href="{% static 'css/telalogin/login.css' %}">
-</head>
-<body>
-    <div class="login-container">
-        <div class="login-brand">
-            <div class="logo-circle">FMRP</div>
-            <h1 class="brand-title">FMRP</h1>
-            <p class="brand-subtitle">Compras Públicas</p>
-        </div>
-        
-        <div class="login-form">
-            <h2 class="form-title">Acessar o Sistema</h2>
-            
-            <!-- MENSAGENS DO DJANGO -->
-            {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            
-            <div class="login-type">
-                <button id="btnUsuario" class="login-type-btn active">Usuário</button>
-                <button id="btnAdmin" class="login-type-btn">Administrador</button>
-            </div>
-            
-            <!-- FORM DJANGO COM CSRF TOKEN -->
-            <form id="loginForm" method="post" action="{% url 'login' %}">
-                {% csrf_token %}  <!-- PROTEÇÃO CSRF -->
-                <div class="form-group">
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Digite seu usuário" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required>
-                </div>
-                
-                <div class="login-options">
-                    <div class="remember-me">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Lembrar-me</label>
-                    </div>
-                    <a href="#" class="forgot-password">Esqueci minha senha</a>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Entrar</button>
-            </form>
-        </div>
+{% extends "telalogin/base_login.html" %}
+
+{% block title %}FMRP - Login{% endblock %}
+
+{% block content %}
+<h2 class="form-title">Acessar o Sistema</h2>
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
     </div>
-    
-    <!-- JS COM TAG STATIC DO DJANGO -->
-<script src="{% static 'js/telalogin/login.js' %}" defer></script>
-</body>
-</html>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="login-type">
+    <button id="btnUsuario" class="login-type-btn active">Usuário</button>
+    <button id="btnAdmin" class="login-type-btn">Administrador</button>
+</div>
+
+<form id="loginForm" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Digite seu usuário" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha" required>
+    </div>
+
+    <div class="login-options">
+        <div class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Lembrar-me</label>
+        </div>
+        <p><a class="forgot-password" href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Entrar</button>
+</form>
+{% endblock %}

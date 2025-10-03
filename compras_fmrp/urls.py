@@ -5,7 +5,7 @@ from django.contrib import admin  # type: ignore
 
 urlpatterns = [
 
-    path('', usuario_views.login, name='login'),
+    path('', usuario_views.logins, name='login'),
     path('usuarios/', include('app_usuarios.urls')),
     path('admin/', include('app_admin.urls')),
     path("catalogo/", include("app_catalogo.urls")),
