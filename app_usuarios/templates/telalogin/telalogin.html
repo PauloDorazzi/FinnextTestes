@@ -16,8 +16,8 @@
 {% endif %}
 
 <div class="login-type">
-    <button id="btnUsuario" class="login-type-btn active">Usuário</button>
-    <button id="btnAdmin" class="login-type-btn">Administrador</button>
+    <button  for="btnUsuario" id="btnUsuario" name="btnUsuario" class="login-type-btn active">Requisitante</button>
+    <button  for="btnAdmin" id="btnAdmin" name="btnAdmin" class="login-type-btn">Administrador</button>
 </div>
 
 <form id="loginForm" method="post" action="{% url 'login' %}">

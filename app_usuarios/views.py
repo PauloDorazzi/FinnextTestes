@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect # type: ignore
 from django.contrib import messages # type: ignore
 from .models import Login
+from django.contrib.auth import authenticate, login as logins # type: ignore
 import json
-impo
+
 
 def dashboard(request):
     return render(request, 'usuario/usuario_integrado.html')
@@ -10,19 +11,23 @@ def dashboard(request):
 
 def logins(request):
     if request.method == "POST":
-        login = Login()
-        login.username = request.POST.get("username")
-        login.password = request.POST.get("password")
-        tipo = request.POST.get("tipo")  # "usuario" ou "admin"
-
-        # Aqui você faria uma verificação no banco
-        if login.username and login.password:
-            # Exemplo: checando se existe no banco
-            if Login.objects.filter(username=login.username, password=login.password).exists():
-                if tipo == "admin":
-                    return redirect("dashboard_admin")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        btnAdmin = request.POST.get("btnAdmin")
+        btnUsuario = request.POST.get("btnUsuario")
+        
+        if username and password:
+            # Autenticação segura
+            user = authenticate(request, username=username, password=password)
+            
+            if user is not None:
+                logins(request, user)  # Cria a sessão
+                
+                # Redireciona conforme o tipo selecionado
+                if btnAdmin == 'id : btnAdmin':
+                    return redirect("app_admin:dashboard_admin")  # Nome da URL
                 else:
-                    return redirect("dashboard_usuario")
+                    return redirect("pagina_logado_usuario")  # Nome da URL
             else:
                 messages.error(request, "Usuário ou senha inválidos")
         else:
